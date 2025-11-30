@@ -23,7 +23,6 @@ export default function Actions({ launchpadData, address }: { launchpadData: TPr
 
   const isSaleEnded = new Date(launchpadData.endTime).getTime() < Date.now();
 
-  // Check if user has settled their bid
   const { data: hasSettled, refetch: refetchSettled } = useReadContract({
     address: launchpadData.presaleAddress as Address,
     abi: LaunchDotFunPresale__factory.abi,
@@ -72,7 +71,6 @@ export default function Actions({ launchpadData, address }: { launchpadData: TPr
       const hardCap = BigInt(launchpadData.hardCap);
       const tokenPerEthWithDecimals = poolInfo.tokenPerEthWithDecimals;
 
-      // Decrypt ethRaisedEncrypted to get ethRaised (totalBid)
       const ethRaisedEncrypted = poolInfo.ethRaisedEncrypted;
       if (!ethRaisedEncrypted || ethRaisedEncrypted === ethers.ZeroHash) {
         throw new Error("No encrypted eth raised data available");
@@ -85,17 +83,13 @@ export default function Actions({ launchpadData, address }: { launchpadData: TPr
         throw new Error("Failed to decrypt eth raised or no bids found");
       }
 
-      // Calculate ethRaisedUsed = min(ethRaised, hardCap)
       const ethRaisedUsed = ethRaised <= hardCap ? ethRaised : hardCap;
 
-      // Calculate tokensSold = ethRaisedUsed * tokenPerEthWithDecimals (zToken units)
       const tokensSold = ethRaisedUsed * tokenPerEthWithDecimals;
 
-      // Set fill ratio for pro-rata distribution
       const fillNumerator = ethRaisedUsed;
       const fillDenominator = ethRaised;
 
-      // Call finalizePreSale (contract accepts BigNumberish, so bigint is fine)
       const tx = await presaleContract.finalizePreSale(ethRaisedUsed, tokensSold, fillNumerator, fillDenominator);
       await tx.wait();
       return tx;

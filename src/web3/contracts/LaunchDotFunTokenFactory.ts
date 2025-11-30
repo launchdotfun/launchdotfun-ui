@@ -25,11 +25,7 @@ import type {
 
 export interface LaunchDotFunTokenFactoryInterface extends Interface {
   getFunction(
-    nameOrSignature:
-      | "createToken"
-      | "createdTokens"
-      | "getTokensByCreator"
-      | "tokenCreators"
+    nameOrSignature: "createToken" | "createdTokens" | "getTokensByCreator" | "tokenCreators"
   ): FunctionFragment;
 
   getEvent(nameOrSignatureOrTopic: "TokenCreated"): EventFragment;
@@ -38,35 +34,14 @@ export interface LaunchDotFunTokenFactoryInterface extends Interface {
     functionFragment: "createToken",
     values: [string, string, BigNumberish, BigNumberish, string]
   ): string;
-  encodeFunctionData(
-    functionFragment: "createdTokens",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getTokensByCreator",
-    values: [AddressLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "tokenCreators",
-    values: [AddressLike]
-  ): string;
+  encodeFunctionData(functionFragment: "createdTokens", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "getTokensByCreator", values: [AddressLike]): string;
+  encodeFunctionData(functionFragment: "tokenCreators", values: [AddressLike]): string;
 
-  decodeFunctionResult(
-    functionFragment: "createToken",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "createdTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getTokensByCreator",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "tokenCreators",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "createToken", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "createdTokens", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getTokensByCreator", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "tokenCreators", data: BytesLike): Result;
 }
 
 export namespace TokenCreatedEvent {
@@ -77,7 +52,7 @@ export namespace TokenCreatedEvent {
     decimals: BigNumberish,
     totalSupply: BigNumberish,
     url: string,
-    creator: AddressLike
+    creator: AddressLike,
   ];
   export type OutputTuple = [
     tokenAddress: string,
@@ -86,7 +61,7 @@ export namespace TokenCreatedEvent {
     decimals: bigint,
     totalSupply: bigint,
     url: string,
-    creator: string
+    creator: string,
   ];
   export interface OutputObject {
     tokenAddress: string;
@@ -120,88 +95,50 @@ export interface LaunchDotFunTokenFactory extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TypedEventLog<TCEvent>>>;
 
-  on<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   on<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  once<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   once<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  listeners<TCEvent extends TypedContractEvent>(
-    event: TCEvent
-  ): Promise<Array<TypedListener<TCEvent>>>;
+  listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
   listeners(eventName?: string): Promise<Array<Listener>>;
-  removeAllListeners<TCEvent extends TypedContractEvent>(
-    event?: TCEvent
-  ): Promise<this>;
+  removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
 
   createToken: TypedContractMethod<
-    [
-      name: string,
-      symbol: string,
-      decimals: BigNumberish,
-      totalSupply: BigNumberish,
-      url: string
-    ],
+    [name: string, symbol: string, decimals: BigNumberish, totalSupply: BigNumberish, url: string],
     [string],
     "nonpayable"
   >;
 
   createdTokens: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
 
-  getTokensByCreator: TypedContractMethod<
-    [creator: AddressLike],
-    [string[]],
-    "view"
-  >;
+  getTokensByCreator: TypedContractMethod<[creator: AddressLike], [string[]], "view">;
 
   tokenCreators: TypedContractMethod<[token: AddressLike], [string], "view">;
 
-  getFunction<T extends ContractMethod = ContractMethod>(
-    key: string | FunctionFragment
-  ): T;
+  getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
 
   getFunction(
     nameOrSignature: "createToken"
   ): TypedContractMethod<
-    [
-      name: string,
-      symbol: string,
-      decimals: BigNumberish,
-      totalSupply: BigNumberish,
-      url: string
-    ],
+    [name: string, symbol: string, decimals: BigNumberish, totalSupply: BigNumberish, url: string],
     [string],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "createdTokens"
-  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
-  getFunction(
-    nameOrSignature: "getTokensByCreator"
-  ): TypedContractMethod<[creator: AddressLike], [string[]], "view">;
-  getFunction(
-    nameOrSignature: "tokenCreators"
-  ): TypedContractMethod<[token: AddressLike], [string], "view">;
+  getFunction(nameOrSignature: "createdTokens"): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+  getFunction(nameOrSignature: "getTokensByCreator"): TypedContractMethod<[creator: AddressLike], [string[]], "view">;
+  getFunction(nameOrSignature: "tokenCreators"): TypedContractMethod<[token: AddressLike], [string], "view">;
 
   getEvent(
     key: "TokenCreated"
-  ): TypedContractEvent<
-    TokenCreatedEvent.InputTuple,
-    TokenCreatedEvent.OutputTuple,
-    TokenCreatedEvent.OutputObject
-  >;
+  ): TypedContractEvent<TokenCreatedEvent.InputTuple, TokenCreatedEvent.OutputTuple, TokenCreatedEvent.OutputObject>;
 
   filters: {
     "TokenCreated(address,string,string,uint8,uint256,string,address)": TypedContractEvent<

@@ -20,7 +20,6 @@ import { useEthersProvider } from "./useEthersProvider";
 import { useEthersSigner } from "./useEthersSigner";
 import useWeb3 from "./useWeb3";
 
-// returns null on errors
 export default function useContract<T extends BaseContract = BaseContract>(
   addressOrAddressMap: string | { [chainId: number]: string } | undefined,
   ABI: any,

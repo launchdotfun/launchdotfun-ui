@@ -60,7 +60,6 @@ describe("buildManagePresaleFilters", () => {
       token: "0xtoken",
     });
     expect(filters?.startDate && filters?.endDate).toBeTruthy();
-    // When start > end, they should be swapped
     const start = new Date(filters!.startDate!);
     const end = new Date(filters!.endDate!);
     expect(start.getTime()).toBeLessThanOrEqual(end.getTime());

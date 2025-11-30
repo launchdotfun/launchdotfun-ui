@@ -106,12 +106,10 @@ export default function CreateTokenView() {
 
       const receipt = await tx.wait();
 
-      // Fallback to original index assumption to read the TokenCreated event
       const event = receipt?.logs?.[2] as EventLog | undefined;
 
       if (!event && !receipt?.logs?.length) {
         console.warn("Could not find TokenCreated event log");
-        // We continue but might miss the address for the API call
       }
 
       const tokenAddress = event && event.args ? (event.args[0] as string) : "";

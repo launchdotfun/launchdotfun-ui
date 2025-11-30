@@ -37,7 +37,7 @@ export declare namespace LaunchDotFunPresale {
     hardCap: bigint,
     softCap: bigint,
     start: bigint,
-    end: bigint
+    end: bigint,
   ] & {
     tokenPresale: bigint;
     hardCap: bigint;
@@ -48,40 +48,20 @@ export declare namespace LaunchDotFunPresale {
 }
 
 export interface LaunchDotFunPresaleFactoryInterface extends Interface {
-  getFunction(
-    nameOrSignature:
-      | "allPresales"
-      | "createLaunchDotFunPresale"
-      | "getPresalesByCreator"
-  ): FunctionFragment;
+  getFunction(nameOrSignature: "allPresales" | "createLaunchDotFunPresale" | "getPresalesByCreator"): FunctionFragment;
 
   getEvent(nameOrSignatureOrTopic: "LaunchDotFunPresaleCreated"): EventFragment;
 
-  encodeFunctionData(
-    functionFragment: "allPresales",
-    values: [BigNumberish]
-  ): string;
+  encodeFunctionData(functionFragment: "allPresales", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "createLaunchDotFunPresale",
     values: [AddressLike, LaunchDotFunPresale.PresaleOptionsStruct]
   ): string;
-  encodeFunctionData(
-    functionFragment: "getPresalesByCreator",
-    values: [AddressLike]
-  ): string;
+  encodeFunctionData(functionFragment: "getPresalesByCreator", values: [AddressLike]): string;
 
-  decodeFunctionResult(
-    functionFragment: "allPresales",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "createLaunchDotFunPresale",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getPresalesByCreator",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "allPresales", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "createLaunchDotFunPresale", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getPresalesByCreator", data: BytesLike): Result;
 }
 
 export namespace LaunchDotFunPresaleCreatedEvent {
@@ -90,15 +70,9 @@ export namespace LaunchDotFunPresaleCreatedEvent {
     presale: AddressLike,
     token: AddressLike,
     ztoken: AddressLike,
-    zweth: AddressLike
+    zweth: AddressLike,
   ];
-  export type OutputTuple = [
-    creator: string,
-    presale: string,
-    token: string,
-    ztoken: string,
-    zweth: string
-  ];
+  export type OutputTuple = [creator: string, presale: string, token: string, ztoken: string, zweth: string];
   export interface OutputObject {
     creator: string;
     presale: string;
@@ -129,31 +103,21 @@ export interface LaunchDotFunPresaleFactory extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TypedEventLog<TCEvent>>>;
 
-  on<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   on<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  once<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   once<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  listeners<TCEvent extends TypedContractEvent>(
-    event: TCEvent
-  ): Promise<Array<TypedListener<TCEvent>>>;
+  listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
   listeners(eventName?: string): Promise<Array<Listener>>;
-  removeAllListeners<TCEvent extends TypedContractEvent>(
-    event?: TCEvent
-  ): Promise<this>;
+  removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
 
   allPresales: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
 
@@ -163,19 +127,11 @@ export interface LaunchDotFunPresaleFactory extends BaseContract {
     "nonpayable"
   >;
 
-  getPresalesByCreator: TypedContractMethod<
-    [creator: AddressLike],
-    [string[]],
-    "view"
-  >;
+  getPresalesByCreator: TypedContractMethod<[creator: AddressLike], [string[]], "view">;
 
-  getFunction<T extends ContractMethod = ContractMethod>(
-    key: string | FunctionFragment
-  ): T;
+  getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
 
-  getFunction(
-    nameOrSignature: "allPresales"
-  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+  getFunction(nameOrSignature: "allPresales"): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
   getFunction(
     nameOrSignature: "createLaunchDotFunPresale"
   ): TypedContractMethod<
@@ -183,9 +139,7 @@ export interface LaunchDotFunPresaleFactory extends BaseContract {
     [string],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "getPresalesByCreator"
-  ): TypedContractMethod<[creator: AddressLike], [string[]], "view">;
+  getFunction(nameOrSignature: "getPresalesByCreator"): TypedContractMethod<[creator: AddressLike], [string[]], "view">;
 
   getEvent(
     key: "LaunchDotFunPresaleCreated"

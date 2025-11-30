@@ -123,17 +123,15 @@ function formatSmallValue(
     return prefix + "0" + suffix;
   }
 
-  const [integerPart, decimalPart] = value.toFixed(fractionDigits).split("."); // Ensure enough precision
-  const leadingZeros = decimalPart.match(/^0+/)?.[0]?.length || 0; // Count leading zeros
+  const [integerPart, decimalPart] = value.toFixed(fractionDigits).split(".");
+  const leadingZeros = decimalPart.match(/^0+/)?.[0]?.length || 0;
 
-  // Generate the subscript dynamically
   const subscript = leadingZeros
     .toString()
     .split("")
-    .map((digit) => String.fromCharCode(0x2080 + parseInt(digit))) // Convert to Unicode subscript
+    .map((digit) => String.fromCharCode(0x2080 + parseInt(digit)))
     .join("");
 
-  // Build the formatted string
   const formatted = `${integerPart}.0${subscript}${decimalPart.slice(leadingZeros, leadingZeros + 5)}`;
   return prefix + formatted + suffix;
 }

@@ -66,18 +66,9 @@ export interface LaunchDotFunTokenWrapperInterface extends Interface {
       | "UnwrapRequested"
   ): EventFragment;
 
-  encodeFunctionData(
-    functionFragment: "confidentialBalanceOf",
-    values: [AddressLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "confidentialProtocolId",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "confidentialTotalSupply",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: "confidentialBalanceOf", values: [AddressLike]): string;
+  encodeFunctionData(functionFragment: "confidentialProtocolId", values?: undefined): string;
+  encodeFunctionData(functionFragment: "confidentialTotalSupply", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "confidentialTransfer(address,bytes32,bytes)",
     values: [AddressLike, BytesLike, BytesLike]
@@ -110,46 +101,22 @@ export interface LaunchDotFunTokenWrapperInterface extends Interface {
     functionFragment: "confidentialTransferFromAndCall(address,address,bytes32,bytes)",
     values: [AddressLike, AddressLike, BytesLike, BytesLike]
   ): string;
-  encodeFunctionData(
-    functionFragment: "contractURI",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: "contractURI", values?: undefined): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "discloseEncryptedAmount",
-    values: [BytesLike, BigNumberish, BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "finalizeUnwrap",
-    values: [BytesLike, BigNumberish, BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "isOperator",
-    values: [AddressLike, AddressLike]
-  ): string;
+  encodeFunctionData(functionFragment: "discloseEncryptedAmount", values: [BytesLike, BigNumberish, BytesLike]): string;
+  encodeFunctionData(functionFragment: "finalizeUnwrap", values: [BytesLike, BigNumberish, BytesLike]): string;
+  encodeFunctionData(functionFragment: "isOperator", values: [AddressLike, AddressLike]): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "onTransferReceived",
     values: [AddressLike, AddressLike, BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(functionFragment: "rate", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "requestDiscloseEncryptedAmount",
-    values: [BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setOperator",
-    values: [AddressLike, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "supportsInterface",
-    values: [BytesLike]
-  ): string;
+  encodeFunctionData(functionFragment: "requestDiscloseEncryptedAmount", values: [BytesLike]): string;
+  encodeFunctionData(functionFragment: "setOperator", values: [AddressLike, BigNumberish]): string;
+  encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "underlying",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: "underlying", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "unwrap(address,address,bytes32,bytes)",
     values: [AddressLike, AddressLike, BytesLike, BytesLike]
@@ -158,35 +125,14 @@ export interface LaunchDotFunTokenWrapperInterface extends Interface {
     functionFragment: "unwrap(address,address,bytes32)",
     values: [AddressLike, AddressLike, BytesLike]
   ): string;
-  encodeFunctionData(
-    functionFragment: "wrap",
-    values: [AddressLike, BigNumberish]
-  ): string;
+  encodeFunctionData(functionFragment: "wrap", values: [AddressLike, BigNumberish]): string;
 
-  decodeFunctionResult(
-    functionFragment: "confidentialBalanceOf",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialProtocolId",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialTotalSupply",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialTransfer(address,bytes32,bytes)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialTransfer(address,bytes32)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialTransferAndCall(address,bytes32,bytes)",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "confidentialBalanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "confidentialProtocolId", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "confidentialTotalSupply", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "confidentialTransfer(address,bytes32,bytes)", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "confidentialTransfer(address,bytes32)", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "confidentialTransferAndCall(address,bytes32,bytes)", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "confidentialTransferAndCall(address,bytes32,bytes,bytes)",
     data: BytesLike
@@ -195,10 +141,7 @@ export interface LaunchDotFunTokenWrapperInterface extends Interface {
     functionFragment: "confidentialTransferFrom(address,address,bytes32,bytes)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "confidentialTransferFrom(address,address,bytes32)",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "confidentialTransferFrom(address,address,bytes32)", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "confidentialTransferFromAndCall(address,address,bytes32,bytes,bytes)",
     data: BytesLike
@@ -207,48 +150,21 @@ export interface LaunchDotFunTokenWrapperInterface extends Interface {
     functionFragment: "confidentialTransferFromAndCall(address,address,bytes32,bytes)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "contractURI",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "contractURI", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "discloseEncryptedAmount",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "finalizeUnwrap",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "discloseEncryptedAmount", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "finalizeUnwrap", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "isOperator", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "onTransferReceived",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "onTransferReceived", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "rate", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "requestDiscloseEncryptedAmount",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setOperator",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "supportsInterface",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "requestDiscloseEncryptedAmount", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setOperator", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "underlying", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "unwrap(address,address,bytes32,bytes)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "unwrap(address,address,bytes32)",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "unwrap(address,address,bytes32,bytes)", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "unwrap(address,address,bytes32)", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "wrap", data: BytesLike): Result;
 }
 
@@ -279,11 +195,7 @@ export namespace AmountDisclosedEvent {
 }
 
 export namespace ConfidentialTransferEvent {
-  export type InputTuple = [
-    from: AddressLike,
-    to: AddressLike,
-    amount: BytesLike
-  ];
+  export type InputTuple = [from: AddressLike, to: AddressLike, amount: BytesLike];
   export type OutputTuple = [from: string, to: string, amount: string];
   export interface OutputObject {
     from: string;
@@ -297,11 +209,7 @@ export namespace ConfidentialTransferEvent {
 }
 
 export namespace OperatorSetEvent {
-  export type InputTuple = [
-    holder: AddressLike,
-    operator: AddressLike,
-    until: BigNumberish
-  ];
+  export type InputTuple = [holder: AddressLike, operator: AddressLike, until: BigNumberish];
   export type OutputTuple = [holder: string, operator: string, until: bigint];
   export interface OutputObject {
     holder: string;
@@ -315,14 +223,8 @@ export namespace OperatorSetEvent {
 }
 
 export namespace PublicDecryptionVerifiedEvent {
-  export type InputTuple = [
-    handlesList: BytesLike[],
-    abiEncodedCleartexts: BytesLike
-  ];
-  export type OutputTuple = [
-    handlesList: string[],
-    abiEncodedCleartexts: string
-  ];
+  export type InputTuple = [handlesList: BytesLike[], abiEncodedCleartexts: BytesLike];
+  export type OutputTuple = [handlesList: string[], abiEncodedCleartexts: string];
   export interface OutputObject {
     handlesList: string[];
     abiEncodedCleartexts: string;
@@ -334,16 +236,8 @@ export namespace PublicDecryptionVerifiedEvent {
 }
 
 export namespace UnwrapFinalizedEvent {
-  export type InputTuple = [
-    receiver: AddressLike,
-    encryptedAmount: BytesLike,
-    cleartextAmount: BigNumberish
-  ];
-  export type OutputTuple = [
-    receiver: string,
-    encryptedAmount: string,
-    cleartextAmount: bigint
-  ];
+  export type InputTuple = [receiver: AddressLike, encryptedAmount: BytesLike, cleartextAmount: BigNumberish];
+  export type OutputTuple = [receiver: string, encryptedAmount: string, cleartextAmount: bigint];
   export interface OutputObject {
     receiver: string;
     encryptedAmount: string;
@@ -385,37 +279,23 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TypedEventLog<TCEvent>>>;
 
-  on<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   on<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  once<TCEvent extends TypedContractEvent>(
-    event: TCEvent,
-    listener: TypedListener<TCEvent>
-  ): Promise<this>;
+  once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
   once<TCEvent extends TypedContractEvent>(
     filter: TypedDeferredTopicFilter<TCEvent>,
     listener: TypedListener<TCEvent>
   ): Promise<this>;
 
-  listeners<TCEvent extends TypedContractEvent>(
-    event: TCEvent
-  ): Promise<Array<TypedListener<TCEvent>>>;
+  listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
   listeners(eventName?: string): Promise<Array<Listener>>;
-  removeAllListeners<TCEvent extends TypedContractEvent>(
-    event?: TCEvent
-  ): Promise<this>;
+  removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
 
-  confidentialBalanceOf: TypedContractMethod<
-    [account: AddressLike],
-    [string],
-    "view"
-  >;
+  confidentialBalanceOf: TypedContractMethod<[account: AddressLike], [string], "view">;
 
   confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
 
@@ -440,23 +320,13 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
   >;
 
   "confidentialTransferAndCall(address,bytes32,bytes,bytes)": TypedContractMethod<
-    [
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike,
-      data: BytesLike
-    ],
+    [to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike, data: BytesLike],
     [string],
     "nonpayable"
   >;
 
   "confidentialTransferFrom(address,address,bytes32,bytes)": TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike],
     [string],
     "nonpayable"
   >;
@@ -468,13 +338,7 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
   >;
 
   "confidentialTransferFromAndCall(address,address,bytes32,bytes,bytes)": TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike,
-      data: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike, data: BytesLike],
     [string],
     "nonpayable"
   >;
@@ -490,75 +354,41 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
   decimals: TypedContractMethod<[], [bigint], "view">;
 
   discloseEncryptedAmount: TypedContractMethod<
-    [
-      encryptedAmount: BytesLike,
-      cleartextAmount: BigNumberish,
-      decryptionProof: BytesLike
-    ],
+    [encryptedAmount: BytesLike, cleartextAmount: BigNumberish, decryptionProof: BytesLike],
     [void],
     "nonpayable"
   >;
 
   finalizeUnwrap: TypedContractMethod<
-    [
-      burntAmount: BytesLike,
-      burntAmountCleartext: BigNumberish,
-      decryptionProof: BytesLike
-    ],
+    [burntAmount: BytesLike, burntAmountCleartext: BigNumberish, decryptionProof: BytesLike],
     [void],
     "nonpayable"
   >;
 
-  isOperator: TypedContractMethod<
-    [holder: AddressLike, spender: AddressLike],
-    [boolean],
-    "view"
-  >;
+  isOperator: TypedContractMethod<[holder: AddressLike, spender: AddressLike], [boolean], "view">;
 
   name: TypedContractMethod<[], [string], "view">;
 
   onTransferReceived: TypedContractMethod<
-    [
-      arg0: AddressLike,
-      from: AddressLike,
-      amount: BigNumberish,
-      data: BytesLike
-    ],
+    [arg0: AddressLike, from: AddressLike, amount: BigNumberish, data: BytesLike],
     [string],
     "nonpayable"
   >;
 
   rate: TypedContractMethod<[], [bigint], "view">;
 
-  requestDiscloseEncryptedAmount: TypedContractMethod<
-    [encryptedAmount: BytesLike],
-    [void],
-    "nonpayable"
-  >;
+  requestDiscloseEncryptedAmount: TypedContractMethod<[encryptedAmount: BytesLike], [void], "nonpayable">;
 
-  setOperator: TypedContractMethod<
-    [operator: AddressLike, until: BigNumberish],
-    [void],
-    "nonpayable"
-  >;
+  setOperator: TypedContractMethod<[operator: AddressLike, until: BigNumberish], [void], "nonpayable">;
 
-  supportsInterface: TypedContractMethod<
-    [interfaceId: BytesLike],
-    [boolean],
-    "view"
-  >;
+  supportsInterface: TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
 
   symbol: TypedContractMethod<[], [string], "view">;
 
   underlying: TypedContractMethod<[], [string], "view">;
 
   "unwrap(address,address,bytes32,bytes)": TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike],
     [void],
     "nonpayable"
   >;
@@ -569,87 +399,43 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
     "nonpayable"
   >;
 
-  wrap: TypedContractMethod<
-    [to: AddressLike, amount: BigNumberish],
-    [void],
-    "nonpayable"
-  >;
+  wrap: TypedContractMethod<[to: AddressLike, amount: BigNumberish], [void], "nonpayable">;
 
-  getFunction<T extends ContractMethod = ContractMethod>(
-    key: string | FunctionFragment
-  ): T;
+  getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
 
-  getFunction(
-    nameOrSignature: "confidentialBalanceOf"
-  ): TypedContractMethod<[account: AddressLike], [string], "view">;
-  getFunction(
-    nameOrSignature: "confidentialProtocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "confidentialTotalSupply"
-  ): TypedContractMethod<[], [string], "view">;
+  getFunction(nameOrSignature: "confidentialBalanceOf"): TypedContractMethod<[account: AddressLike], [string], "view">;
+  getFunction(nameOrSignature: "confidentialProtocolId"): TypedContractMethod<[], [bigint], "view">;
+  getFunction(nameOrSignature: "confidentialTotalSupply"): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "confidentialTransfer(address,bytes32,bytes)"
-  ): TypedContractMethod<
-    [to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike],
-    [string],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike], [string], "nonpayable">;
   getFunction(
     nameOrSignature: "confidentialTransfer(address,bytes32)"
-  ): TypedContractMethod<
-    [to: AddressLike, amount: BytesLike],
-    [string],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[to: AddressLike, amount: BytesLike], [string], "nonpayable">;
   getFunction(
     nameOrSignature: "confidentialTransferAndCall(address,bytes32,bytes)"
-  ): TypedContractMethod<
-    [to: AddressLike, amount: BytesLike, data: BytesLike],
-    [string],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[to: AddressLike, amount: BytesLike, data: BytesLike], [string], "nonpayable">;
   getFunction(
     nameOrSignature: "confidentialTransferAndCall(address,bytes32,bytes,bytes)"
   ): TypedContractMethod<
-    [
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike,
-      data: BytesLike
-    ],
+    [to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike, data: BytesLike],
     [string],
     "nonpayable"
   >;
   getFunction(
     nameOrSignature: "confidentialTransferFrom(address,address,bytes32,bytes)"
   ): TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike],
     [string],
     "nonpayable"
   >;
   getFunction(
     nameOrSignature: "confidentialTransferFrom(address,address,bytes32)"
-  ): TypedContractMethod<
-    [from: AddressLike, to: AddressLike, amount: BytesLike],
-    [string],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[from: AddressLike, to: AddressLike, amount: BytesLike], [string], "nonpayable">;
   getFunction(
     nameOrSignature: "confidentialTransferFromAndCall(address,address,bytes32,bytes,bytes)"
   ): TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike,
-      data: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike, data: BytesLike],
     [string],
     "nonpayable"
   >;
@@ -660,104 +446,56 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
     [string],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "contractURI"
-  ): TypedContractMethod<[], [string], "view">;
-  getFunction(
-    nameOrSignature: "decimals"
-  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(nameOrSignature: "contractURI"): TypedContractMethod<[], [string], "view">;
+  getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "discloseEncryptedAmount"
   ): TypedContractMethod<
-    [
-      encryptedAmount: BytesLike,
-      cleartextAmount: BigNumberish,
-      decryptionProof: BytesLike
-    ],
+    [encryptedAmount: BytesLike, cleartextAmount: BigNumberish, decryptionProof: BytesLike],
     [void],
     "nonpayable"
   >;
   getFunction(
     nameOrSignature: "finalizeUnwrap"
   ): TypedContractMethod<
-    [
-      burntAmount: BytesLike,
-      burntAmountCleartext: BigNumberish,
-      decryptionProof: BytesLike
-    ],
+    [burntAmount: BytesLike, burntAmountCleartext: BigNumberish, decryptionProof: BytesLike],
     [void],
     "nonpayable"
   >;
   getFunction(
     nameOrSignature: "isOperator"
-  ): TypedContractMethod<
-    [holder: AddressLike, spender: AddressLike],
-    [boolean],
-    "view"
-  >;
-  getFunction(
-    nameOrSignature: "name"
-  ): TypedContractMethod<[], [string], "view">;
+  ): TypedContractMethod<[holder: AddressLike, spender: AddressLike], [boolean], "view">;
+  getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "onTransferReceived"
   ): TypedContractMethod<
-    [
-      arg0: AddressLike,
-      from: AddressLike,
-      amount: BigNumberish,
-      data: BytesLike
-    ],
+    [arg0: AddressLike, from: AddressLike, amount: BigNumberish, data: BytesLike],
     [string],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "rate"
-  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(nameOrSignature: "rate"): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "requestDiscloseEncryptedAmount"
   ): TypedContractMethod<[encryptedAmount: BytesLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "setOperator"
-  ): TypedContractMethod<
-    [operator: AddressLike, until: BigNumberish],
-    [void],
-    "nonpayable"
-  >;
-  getFunction(
-    nameOrSignature: "supportsInterface"
-  ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
-  getFunction(
-    nameOrSignature: "symbol"
-  ): TypedContractMethod<[], [string], "view">;
-  getFunction(
-    nameOrSignature: "underlying"
-  ): TypedContractMethod<[], [string], "view">;
+  ): TypedContractMethod<[operator: AddressLike, until: BigNumberish], [void], "nonpayable">;
+  getFunction(nameOrSignature: "supportsInterface"): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+  getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
+  getFunction(nameOrSignature: "underlying"): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "unwrap(address,address,bytes32,bytes)"
   ): TypedContractMethod<
-    [
-      from: AddressLike,
-      to: AddressLike,
-      encryptedAmount: BytesLike,
-      inputProof: BytesLike
-    ],
+    [from: AddressLike, to: AddressLike, encryptedAmount: BytesLike, inputProof: BytesLike],
     [void],
     "nonpayable"
   >;
   getFunction(
     nameOrSignature: "unwrap(address,address,bytes32)"
-  ): TypedContractMethod<
-    [from: AddressLike, to: AddressLike, amount: BytesLike],
-    [void],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[from: AddressLike, to: AddressLike, amount: BytesLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "wrap"
-  ): TypedContractMethod<
-    [to: AddressLike, amount: BigNumberish],
-    [void],
-    "nonpayable"
-  >;
+  ): TypedContractMethod<[to: AddressLike, amount: BigNumberish], [void], "nonpayable">;
 
   getEvent(
     key: "AmountDiscloseRequested"
@@ -782,11 +520,7 @@ export interface LaunchDotFunTokenWrapper extends BaseContract {
   >;
   getEvent(
     key: "OperatorSet"
-  ): TypedContractEvent<
-    OperatorSetEvent.InputTuple,
-    OperatorSetEvent.OutputTuple,
-    OperatorSetEvent.OutputObject
-  >;
+  ): TypedContractEvent<OperatorSetEvent.InputTuple, OperatorSetEvent.OutputTuple, OperatorSetEvent.OutputObject>;
   getEvent(
     key: "PublicDecryptionVerified"
   ): TypedContractEvent<

@@ -56,12 +56,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: "Presale not found" }, { status: 404 });
     }
 
-    // Prepare update data
     const updateData: any = {
       updatedAt: new Date(),
     };
 
-    // Only update fields that are provided
     if (body.name !== undefined) updateData.name = body.name;
     if (body.description !== undefined) updateData.description = body.description;
     if (body.thumbnail !== undefined) updateData.thumbnail = body.thumbnail;
@@ -165,9 +163,7 @@ async function findPresale(collection: Collection, id: string) {
     if (presale) {
       return presale;
     }
-  } catch {
-    // ignore invalid objectId
-  }
+  } catch {}
 
   presale = await collection.findOne({ presaleAddress: id, deletedAt: null });
   if (presale) {

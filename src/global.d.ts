@@ -1,6 +1,5 @@
 import { FhevmInstance, FhevmInstanceConfig, KMSInput, TFHEInput } from "@zama-fhe/relayer-sdk/web";
 
-// Extend the Window interface to include relayerSDK
 declare global {
   interface Window {
     relayerSDK: {

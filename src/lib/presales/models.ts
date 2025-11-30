@@ -45,7 +45,6 @@ export function presaleToDocument(
 export function documentToPresale(doc: PresaleDocument): TPresale {
   const token = typeof doc.token === "string" ? ({} as any) : documentToToken(doc.token as TokenDocument);
 
-  // Convert ObjectId to number (using timestamp part or hash)
   const id = doc._id ? parseInt(doc._id.toString().slice(-8), 16) : 0;
 
   return {

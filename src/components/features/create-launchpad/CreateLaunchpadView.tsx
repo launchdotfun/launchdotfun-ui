@@ -113,7 +113,6 @@ export default function CreateLaunchpadView() {
     if (files && files.length > 0) {
       const file = files[0];
       if (file.size > 1 * 1024 * 1024) {
-        // 1MB limit
         toast.error("Icon file size must be less than 1MB.");
         return;
       }
@@ -130,7 +129,6 @@ export default function CreateLaunchpadView() {
         console.error("Error uploading icon:", error);
         toast.error("Failed to upload icon. Please try again.");
         form.setValue("thumbnail", "");
-        // Reset the input file
         if (event.target) {
           event.target.value = "";
         }

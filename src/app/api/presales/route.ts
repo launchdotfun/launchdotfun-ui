@@ -96,7 +96,6 @@ export async function POST(request: NextRequest) {
     const db = await getDatabase();
     const collection = db.collection<PresaleDocument>("presales");
 
-    // Check if presale with this address already exists
     const existing = await collection.findOne({
       presaleAddress: body.presaleAddress,
       deletedAt: null,
@@ -105,7 +104,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Presale with this address already exists" }, { status: 409 });
     }
 
-    // Prevent duplicate presales for the same token
     const duplicateToken = await collection.findOne({
       "token.address": tokenAddress,
       deletedAt: null,
@@ -124,7 +122,6 @@ export async function POST(request: NextRequest) {
     const result = await collection.insertOne(presaleDoc);
     const inserted = await collection.findOne({ _id: result.insertedId });
 
-    // Mark token as used
     await db.collection("tokens").updateOne(
       { address: tokenAddress, deletedAt: null },
       {

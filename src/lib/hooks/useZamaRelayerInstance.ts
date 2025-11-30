@@ -39,7 +39,6 @@ export default function useZamaRelayerInstance() {
         throw new Error("createInstance is not available on window.relayerSDK");
       }
 
-      // Initialize the SDK first to load WASM modules
       if (!sdkInitialized) {
         console.debug("🔍 [ZamaRelayer] Calling initSDK()...");
         const startTime = Date.now();
@@ -58,10 +57,8 @@ export default function useZamaRelayerInstance() {
         console.debug("🔍 [ZamaRelayer] SDK already initialized, skipping initSDK()");
       }
 
-      // Get config after initSDK - try ZamaEthereumConfig first, then fallback to SepoliaConfig
       console.debug("🔍 [ZamaRelayer] window.relayerSDK keys (after init):", Object.keys(window.relayerSDK || {}));
 
-      // Try to get config - SDK v0.1.0-9 uses SepoliaConfig, newer versions may use ZamaEthereumConfig
       const config = window.relayerSDK.ZamaEthereumConfig || window.relayerSDK.SepoliaConfig;
 
       if (config) {
@@ -85,7 +82,6 @@ export default function useZamaRelayerInstance() {
       //   allWindowRelayerSDKKeys: Object.keys(window.relayerSDK),
       // });
 
-      // Validate config before proceeding
       if (!config) {
         console.error("❌ [ZamaRelayer] Neither ZamaEthereumConfig nor SepoliaConfig is available after initSDK()");
         console.error("❌ [ZamaRelayer] Available properties on window.relayerSDK:", Object.keys(window.relayerSDK));
@@ -100,14 +96,12 @@ export default function useZamaRelayerInstance() {
         throw new Error(`Config is not an object, got: ${typeof config}`);
       }
 
-      // Check for required property
       if (!("verifyingContractAddressDecryption" in config)) {
         console.error("❌ [ZamaRelayer] Config missing 'verifyingContractAddressDecryption' property");
         console.error("❌ [ZamaRelayer] Config structure:", JSON.stringify(config, null, 2));
         throw new Error("Config is missing required property: verifyingContractAddressDecryption");
       }
 
-      // Now create the instance with config
       console.debug("🔍 [ZamaRelayer] Calling createInstance()...");
       console.debug("🔍 [ZamaRelayer] Config being passed:", {
         type: typeof config,
@@ -150,7 +144,6 @@ export default function useZamaRelayerInstance() {
     staleTime: 60 * 60_000,
   });
 
-  // Log query state changes
   console.debug("🔍 [ZamaRelayer] Query state:", {
     status,
     isLoading,

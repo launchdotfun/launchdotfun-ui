@@ -34,11 +34,7 @@ export const createPresaleSchema = yup.object().shape({
   telegram: yup.string().url("Must be a valid URL").optional(),
   twitter: yup.string().url("Must be a valid URL").optional(),
   startDate: yup.date().required("Start date is required"),
-  // Note: Past date validation is done in handleConfirmDeployment, not here
-  // to avoid showing error when user is just selecting a date
   endDate: yup.date().required("End date is required").min(yup.ref("startDate"), "End date must be after start date"),
-  // Note: Past date validation is done in handleConfirmDeployment, not here
-  // to avoid showing error when user is just selecting a date
   thumbnail: yup.string().optional(),
   zTokenAddress: yup
     .string()

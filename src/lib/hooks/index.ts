@@ -1,6 +1,3 @@
-// Shared/Infrastructure hooks - used across multiple domains
-// Domain-specific hooks are in tokens/hooks.ts and presales/hooks.ts
-
 export { default as useWeb3 } from "./useWeb3";
 export {
   default as useContract,

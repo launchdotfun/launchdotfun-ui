@@ -64,14 +64,11 @@ export default function useApproveCallback({
   const { data: currentAllowance, refetch: allowanceRefetch } = useTokenAllowance(token, address ?? undefined, spender);
   const [approving, setApproving] = useState<boolean>(false);
 
-  // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     if (!amountToApprove || !spender || !currency) return ApprovalState.UNKNOWN;
     if (currency.isNative) return ApprovalState.APPROVED;
-    // we might not have enough data to know whether or not we need to approve
     if (currentAllowance == undefined) return ApprovalState.UNKNOWN;
 
-    // amountToApprove will be defined if currentAllowance is
     return currentAllowance < amountToApprove
       ? approving
         ? ApprovalState.PENDING
@@ -111,7 +108,6 @@ export default function useApproveCallback({
     try {
       let useExact = false;
       const estimatedGas = await tokenContract.approve.estimateGas(spender, MaxUint256).catch(() => {
-        // general fallback for tokens who restrict approval amounts
         useExact = true;
         return tokenContract.approve.estimateGas(spender, amountToApprove);
       });
@@ -160,12 +156,10 @@ export function useConfidentialApproveCallback({
 
   const [approving, setApproving] = useState<boolean>(false);
 
-  // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     if (!spender || !currency) return ApprovalState.UNKNOWN;
     if (currency.isNative || isOperator) return ApprovalState.APPROVED;
 
-    // amountToApprove will be defined if currentAllowance is
     return approving ? ApprovalState.PENDING : ApprovalState.NOT_APPROVED;
   }, [spender, currency, isOperator, approving]);
 

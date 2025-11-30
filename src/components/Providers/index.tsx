@@ -6,14 +6,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PropsWithChildren } from "react";
 import { WagmiProvider } from "wagmi";
 
-// Set up queryClient
 const queryClient = new QueryClient();
 
 if (!projectId) {
   throw new Error("Project ID is not defined");
 }
 
-// Set up metadata
 const metadata = {
   name: "Launch.Fun",
   description:
@@ -22,7 +20,6 @@ const metadata = {
   icons: ["https://launch.fun/icon.png"],
 };
 
-// Create the modal
 export const appKit = createAppKit({
   adapters: [wagmiAdapter],
   projectId,

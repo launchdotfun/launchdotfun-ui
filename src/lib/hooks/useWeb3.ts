@@ -18,9 +18,6 @@ export default function useWeb3() {
 
   const { walletProvider } = useAppKitProvider<Provider>(APPKIT_NAMESPACE);
 
-  // Prioritize AppKit address since that's what the wallet connection uses
-  // AppKit is the source of truth for wallet connections
-  // Use appKitAddress first, then fallback to account.address
   const resolvedAddress = appKitAddress ?? account.address ?? undefined;
   const resolvedStatus =
     appKitStatus === "connected"
@@ -29,7 +26,6 @@ export default function useWeb3() {
         ? account.status
         : (appKitStatus ?? account.status);
 
-  // Debug logging - always log to help debug
   if (typeof window !== "undefined") {
     console.debug("🔍 [useWeb3] Address resolution:", {
       appKitAddress: appKitAddress || "undefined",

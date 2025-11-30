@@ -44,7 +44,6 @@ export async function POST(request: NextRequest) {
     const tokenAddress = body.address.toLowerCase();
     const creatorAddress = body.creator.toLowerCase();
 
-    // Check if token with this address already exists
     const existing = await collection.findOne({ address: tokenAddress, deletedAt: null });
     if (existing) {
       return NextResponse.json({ error: "Token with this address already exists" }, { status: 409 });

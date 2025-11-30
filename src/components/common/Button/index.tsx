@@ -28,7 +28,7 @@ export const CopyButton = ({ text, ...props }: ButtonProps & { text: string }) =
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1000); // Reset after 1 second
+      setTimeout(() => setCopied(false), 1000);
       toast.success("Copied to clipboard!");
     } catch (err) {
       console.error("Failed to copy: ", err);

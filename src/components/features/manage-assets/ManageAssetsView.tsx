@@ -27,9 +27,7 @@ function formatTokenSupply(token: TManageableToken) {
     if (Number.isFinite(formatted)) {
       return formatted.toLocaleString(undefined, { maximumFractionDigits: 2 });
     }
-  } catch {
-    // ignore
-  }
+  } catch {}
   return token.totalSupply;
 }
 

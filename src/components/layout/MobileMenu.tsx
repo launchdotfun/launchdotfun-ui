@@ -31,9 +31,7 @@ export default function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
                   href={item.href}
                   className={cn(
                     "px-4 py-3 text-sm font-semibold text-foreground font-sans transition-all rounded-lg relative",
-                    // Default state
                     "bg-muted/50 hover:bg-muted hover:scale-[1.02]",
-                    // Active state
                     isActive && "bg-primary text-white shadow-lg scale-[1.02]"
                   )}
                 >

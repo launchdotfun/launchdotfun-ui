@@ -6,7 +6,6 @@ const getKey = (address: string) => {
 
 export const authUtils = {
   getKey,
-  // access token
   getAccessToken: (address: string) => {
     if (typeof window === "undefined") return null;
     return window.localStorage.getItem(getKey(address));

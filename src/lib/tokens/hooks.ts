@@ -34,11 +34,8 @@ export function useErc20TokenInfo(tokenAddress?: string, options?: UseErc20Token
       try {
         const tokenInfo = await tokenApi.getTokenByAddress(tokenAddress.toLowerCase());
         return tokenInfo;
-      } catch {
-        // pass
-      }
+      } catch {}
 
-      // query the blockchain for token info
       const res = await multicall!({
         contracts: [
           { abi: ERC20__factory.abi, address: tokenAddress, functionName: "name" },

@@ -2,7 +2,6 @@ import { getAddress } from "ethers";
 import invariant from "tiny-invariant";
 import warning from "tiny-warning";
 
-// warns if addresses are not checksummed
 export function validateAndParseAddress(address: string): string {
   try {
     const checksummedAddress = getAddress(address);

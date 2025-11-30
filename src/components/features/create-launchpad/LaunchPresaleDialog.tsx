@@ -40,7 +40,7 @@ export default function LaunchPresaleDialog({
       <DialogContent
         className="bg-card border-border text-foreground max-w-md"
         onInteractOutside={(e) => {
-          e.preventDefault(); // Prevent closing on outside click
+          e.preventDefault();
         }}
       >
         <DialogHeader>
@@ -85,15 +85,9 @@ function Content({
     const tokenAddress = launchpadData.tokenAddress;
     const softCapInWei = parseUnits(launchpadData.softCap.toString(), ZWETH.decimals);
     const hardCapInWei = parseUnits(launchpadData.hardCap.toString(), ZWETH.decimals);
-    // Convert date to Unix timestamp (seconds)
-    // Note: DatePicker uses local timezone, but getTime() converts to UTC timestamp
-    // Contract uses block.timestamp (UTC), so this conversion is correct
     const startTime = Math.floor(launchpadData.startDate.getTime() / 1000);
     const endTime = Math.floor(launchpadData.endDate.getTime() / 1000);
 
-    // Calculate tokenForPresale: hardCap (in zWETH, real number) * 10^tokenDecimals * presaleRate (tokens per zWETH)
-    // Example: hardCap = 100 zWETH, presaleRate = 1000 tokens/zWETH, decimals = 18
-    // Result: 100 * 10^18 * 1000 = 100_000 * 10^18 tokens (in token's smallest unit)
     const tokenForPresale = BigInt(
       new BigNumber(launchpadData.hardCap)
         .times(Math.pow(10, erc20Info!.decimals))
@@ -150,8 +144,6 @@ function Content({
         return;
       }
 
-      // Validate time - startTime should not be in the past (allow some buffer for block time)
-      // Note: Both currentTime and startTime/endTime are in UTC (Unix timestamp)
       const currentTime = Math.floor(Date.now() / 1000);
       const timeBuffer = 60; // 60 seconds buffer for block time
       if (data.startTime < currentTime - timeBuffer) {
@@ -176,19 +168,15 @@ function Content({
         throw new Error("Transaction receipt not found");
       }
 
-      // Get the event from the transaction receipt - filter by transaction hash to ensure accuracy
       const eventFilter = presaleFactoryContract.filters.LaunchDotFunPresaleCreated(address);
       const events = await presaleFactoryContract.queryFilter(eventFilter, receipt.blockNumber, receipt.blockNumber);
       if (events.length === 0) {
         throw new Error("LaunchDotFunPresaleCreated event not found in transaction receipt");
       }
-      // Get the last event (most recent) to ensure we get the correct one if multiple events exist
-      // Also filter by transaction hash to ensure it's from this specific transaction
       const event = events.filter((e) => e.transactionHash === tx.hash).pop() || events[events.length - 1];
       const presaleAddress = event.args.presale;
       const zTokenAddress = event.args.ztoken;
 
-      // Validate addresses are not zero address
       if (!presaleAddress || presaleAddress === zeroAddress || !isAddress(presaleAddress)) {
         throw new Error("Invalid presale address from contract event");
       }
@@ -196,7 +184,6 @@ function Content({
         throw new Error("Invalid zToken address from contract event");
       }
 
-      // Store deployment data for retry if API fails
       const deploymentInfo = {
         presaleAddress,
         zTokenAddress,
@@ -207,7 +194,6 @@ function Content({
       setPresaleAddress(presaleAddress);
       setZTokenAddress(zTokenAddress);
 
-      // Try API call with retry logic
       let apiSuccess = false;
       const maxRetries = 3;
       let lastError: Error | null = null;
@@ -220,8 +206,8 @@ function Content({
             hardCap: data.hardCap.toString(),
             presaleRate: data.presaleRate.toString(),
             tokensForSale: data.tokenForPresale.toString(),
-            tokensForLiquidity: "0", // Not used - liquidity feature temporarily disabled
-            liquidityPercent: 0, // Not used - liquidity feature temporarily disabled
+            tokensForLiquidity: "0",
+            liquidityPercent: 0,
             createdAt: new Date().toISOString(),
             startTime: new Date(data.startTime * 1000).toISOString(),
             endTime: new Date(data.endTime * 1000).toISOString(),
@@ -247,14 +233,12 @@ function Content({
         } catch (apiError) {
           lastError = apiError as Error;
           if (attempt < maxRetries) {
-            // Wait before retry (exponential backoff)
             await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
           }
         }
       }
 
       if (!apiSuccess) {
-        // Contract deployed but API failed - show error but allow retry
         setApiCallFailed(true);
         toast.error("Contract deployed but failed to save data. You can retry saving the data.", {
           description: getErrorMessage(lastError),

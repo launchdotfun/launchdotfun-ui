@@ -181,7 +181,6 @@ export const getPresaleStatus = (presale?: TPresale, poolInfo?: TPoolInfo) => {
     } else if (status == EPresaleOnchainState.WAITING_FOR_FINALIZE) {
       return EPresaleStatus.Ended;
     }
-    // If state is still ACTIVE but time has ended, it's waiting for finalization
     if (status == EPresaleOnchainState.ACTIVE) {
       return EPresaleStatus.Ended;
     }
